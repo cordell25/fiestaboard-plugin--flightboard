@@ -3,12 +3,11 @@ import requests
 from datetime import datetime
 
 # Import the core components required by FiestaBoard
-from fiestaboard.plugins.base import PluginBase, PluginResult
+from src.plugins.base import PluginBase, PluginResult
 
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://api.airlabs.co/api/v9/schedules"
-
 
 class FlightBoardPlugin(PluginBase):
     """
