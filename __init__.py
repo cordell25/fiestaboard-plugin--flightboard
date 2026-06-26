@@ -7,7 +7,7 @@ from src.plugins.base import PluginBase, PluginResult
 
 logger = logging.getLogger(__name__)
 
-BASE_URL = "https://api.airlabs.co/api/v9/schedules"
+BASE_URL = "https://airlabs.co/api/v9/schedules"
 
 class FlightBoardPlugin(PluginBase):
     """
