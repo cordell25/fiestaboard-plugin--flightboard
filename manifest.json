@@ -1,7 +1,7 @@
 {
   "id": "flightboard",
   "name": "Flight Board",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Airport Departures and Arrivals",
   "author": "Andrew Cordell",
   "icon": "plane",
@@ -74,7 +74,7 @@
           "dep_airport",
           "dep_terminal",
           "dep_time",
-          "dep_dealyed_mins",
+          "dep_delayed_mins",
           "dep_gate",
           "arr_airport",
           "arr_terminal",
