@@ -41,6 +41,7 @@ class FlightBoardPlugin(PluginBase):
 
         airport_code = self.config.get("airport_name", "SFO").upper()
         flight_to_track = self.config.get("flight", "").strip().upper()
+        board_type = self.config.get("board_type", "departures").lower()
 
         # 2. Build the API query parameters
         params = {
@@ -51,8 +52,11 @@ class FlightBoardPlugin(PluginBase):
             # Route to filter by specific flight if provided (e.g., UA2200)
             params["flight_iata"] = flight_to_track
         else:
-            # Default to showing departures from the specified airport
-            params["dep_iata"] = airport_code
+            # Dynamically alternate parameter based on manifest UI dropdown select
+            if board_type == "arrivals":
+                params["arr_iata"] = airport_code
+            else:
+                params["dep_iata"] = airport_code
 
         # 3. Execute request
         try:
@@ -88,7 +92,7 @@ class FlightBoardPlugin(PluginBase):
                 "dep_airport": str(f.get("dep_iata", ""))[:3],
                 "dep_terminal": str(f.get("dep_terminal") or "")[:3],
                 "dep_time": self._format_time(f.get("dep_time")),
-                "dep_delayed_mins": dep_delay[:4],  # Matches your corrected manifest field
+                "dep_delayed_mins": dep_delay[:4],  
                 "dep_gate": str(f.get("dep_gate") or "")[:3],
                 "arr_airport": str(f.get("arr_iata", ""))[:3],
                 "arr_terminal": str(f.get("arr_terminal") or "")[:3],
