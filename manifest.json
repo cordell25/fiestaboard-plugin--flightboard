@@ -1,7 +1,7 @@
 {
   "id": "flightboard",
   "name": "Flight Board",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Airport Departures and Arrivals",
   "author": "Andrew Cordell",
   "icon": "plane",
@@ -28,6 +28,13 @@
         "title": "Airport Name",
         "description": "Display IATA Name shown on the board (e.g. SFO).",
         "default": "SFO"
+      },
+      "board_type": {
+        "type": "string",
+        "title": "Board Type",
+        "description": "Choose whether to display departures or arrivals for the selected airport.",
+        "enum": ["departures", "arrivals"],
+        "default": "departures"
       },
       "flight": {
         "type": "string",
