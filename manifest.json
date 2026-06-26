@@ -1,0 +1,106 @@
+{
+  "id": "flightboard",
+  "name": "Flight Board",
+  "version": "0.0.1",
+  "description": "Airport Departures and Arrivals",
+  "author": "Andrew Cordell",
+  "icon": "plane",
+  "category": "data",
+  "repository": "https://github.com/cordell25/fiestaboard-plugin--flightboard",
+  "documentation": "README.md",
+  "min_refresh_seconds": 60,
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "title": "Enabled",
+        "default": false
+      },
+      "api_key": {
+        "type": "string",
+        "title": "AirLabs.co API Key",
+        "description": "Request your (free) API key from airlabs.co",
+        "ui:widget": "password"
+      },
+      "airport_name": {
+        "type": "string",
+        "title": "Airport Name",
+        "description": "Display IATA Name shown on the board (e.g. SFO).",
+        "default": "SFO"
+      },
+      "flight": {
+        "type": "string",
+        "title": "Track Flight",
+        "description": "Flight Number to Track: IATA Airline Code + Flight Number (UA2200)"
+      },
+      "timezone": {
+        "type": "string",
+        "title": "Timezone",
+        "description": "IANA timezone for interpreting all-day events and formatting display times.",
+        "default": "America/Los_Angeles",
+        "ui:widget": "timezone"
+      },
+      "refresh_seconds": {
+        "type": "integer",
+        "title": "Refresh Interval (seconds)",
+        "description": "How often to refresh data.",
+        "default": 60,
+        "minimum": 60
+      }
+    },
+    "required": ["airport_name"]
+  },
+  "variables": {
+    "groups": {
+      "board": { "label": "Board" },
+      "flight": { "label": "Flight" }
+    },
+    "simple": {
+      "airport": {
+        "description": "IATA Airport Code",
+        "type": "string",
+        "max_length": 3,
+        "group": "board",
+        "example": "SFO"
+      }
+    },
+    "arrays": {
+      "flights": {
+        "label_field": "name",
+        "item_fields": [
+          "airline_iata",
+          "flight_number",
+          "dep_airport",
+          "dep_terminal",
+          "dep_time",
+          "dep_dealyed_mins",
+          "dep_gate",
+          "arr_airport",
+          "arr_terminal",
+          "arr_time",
+          "arr_delayed_mins",
+          "arr_gate",
+          "arr_baggage",
+          "status"
+        ]
+      }
+    }
+  },
+  "max_lengths": {
+    "flights.*.airline_iata": 2,
+    "flights.*.flight_number": 4,
+    "flights.*.dep_airport": 3,
+    "flights.*.dep_terminal": 3,
+    "flights.*.dep_time": 16,
+    "flights.*.dep_dealyed_mins": 4,
+    "flights.*.dep_gate": 3,
+    "flights.*.arr_airport": 3,
+    "flights.*.arr_terminal": 3,
+    "flights.*.arr_time": 16,
+    "flights.*.arr_delayed_mins": 4,
+    "flights.*.arr_gate": 3,
+    "flights.*.arr_baggage": 3,
+    "flights.*.status": 15
+  }
+}
